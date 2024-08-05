@@ -1,11 +1,14 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const db = require('./db')
+require('dotenv').config();
 
 
 const app = express(); 
 
 app.use(bodyParser.json()) // store data in req.body and we can use it
+const PORT = process.env.PORT || 4000
+
  
 app.get('/', function(req, res){
     res.send('Welcome to my hotel... how i can help you ?, we have list of menus')
@@ -35,7 +38,8 @@ const menuRoutes = require('./routes/menuRoutes');
 app.use('/person', personRoutes);
 app.use('/menu', menuRoutes);
 
-app.listen(4000, ()=>{
+
+app.listen(PORT, ()=>{
     console.log('listening on port 4000');
 })
 
